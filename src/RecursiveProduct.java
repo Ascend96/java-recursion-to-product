@@ -6,7 +6,6 @@ public class RecursiveProduct {
         return findProduct(numbers, 0);
     }
 
-
     // to find the product of a list of numbers, we multiply all of them together
     private static int findProduct(int[] numbers, int index) {
         // base case

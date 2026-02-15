@@ -11,6 +11,7 @@ public class CalculateProductGUI extends JFrame {
 
     private final List<Integer> numbers = new ArrayList<>();
 
+    // constructor for the GUI
     public CalculateProductGUI() {
         setTitle("Recursive Product Calculator");
         setSize(450, 300);
@@ -20,6 +21,7 @@ public class CalculateProductGUI extends JFrame {
         initializeComponents();
     }
 
+    // initializes the GUI components
     private void initializeComponents() {
         // Top panel: input
         JPanel inputPanel = new JPanel(new FlowLayout());
@@ -36,23 +38,24 @@ public class CalculateProductGUI extends JFrame {
         JScrollPane scrollPane = new JScrollPane(numberList);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Numbers"));
 
-        // Bottom panel: product
+        // panel for displaying the product
         JPanel productPanel = new JPanel();
         productLabel = new JLabel("Product: 1");
         productLabel.setFont(new Font("Arial", Font.BOLD, 16));
         productPanel.add(productLabel);
 
-        // Layout
+        // layout
         setLayout(new BorderLayout(10, 10));
         add(inputPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(productPanel, BorderLayout.SOUTH);
 
-        // Events
+        // events
         addButton.addActionListener(_ -> addNumber());
         numberField.addActionListener(_ -> addNumber());
     }
 
+    // adds a number to the list and updates the product recursively
     private void addNumber() {
         try {
             int value = Integer.parseInt(numberField.getText().trim());
@@ -75,13 +78,10 @@ public class CalculateProductGUI extends JFrame {
         }
     }
 
+    // updates the value of the product based on each number the user entered
     private void updateProduct() {
         int[] array = numbers.stream().mapToInt(Integer::intValue).toArray();
         int result = RecursiveProduct.findProduct(array);
         productLabel.setText("Product: " + result);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new CalculateProductGUI().setVisible(true));
     }
 }
